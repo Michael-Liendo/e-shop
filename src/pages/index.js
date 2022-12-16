@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import cn from 'classnames';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 
@@ -19,7 +20,9 @@ export default function Home({ products, categories }) {
           <p className="ml-10 text-xl font-semibold">Categories</p>
           <h2
             onClick={() => setShowCategories('all')}
-            className="ml-12 cursor-pointer text-lg"
+            className={cn('ml-12 cursor-pointer text-lg', {
+              'font-semibold': showCategories === 'all',
+            })}
           >
             All
           </h2>
@@ -27,7 +30,10 @@ export default function Home({ products, categories }) {
             ? categories.map((category) => (
                 <h2
                   onClick={() => setShowCategories(category.name.toLowerCase())}
-                  className="ml-12 cursor-pointer text-lg"
+                  className={cn('ml-12 cursor-pointer text-lg', {
+                    'font-semibold':
+                      showCategories === category.name.toLowerCase(),
+                  })}
                   key={category.id}
                 >
                   {category.name}
