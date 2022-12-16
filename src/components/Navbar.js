@@ -15,8 +15,8 @@ function NavLink({ children, href }) {
 
 export default function Navbar() {
   return (
-    <div className="flex justify-between relative text-xl my-6 mx-7">
-      <h1 className="">LOGO</h1>
+    <div className="z-50 bg-white flex fixed w-[100%] justify-between text-xl pt-6 pb-4 px-7">
+      <h1>LOGO</h1>
       <div className="absolute left-[40%]">
         <NavLink href="#">Ropa</NavLink>
         <NavLink href="#">Electrónicos</NavLink>
