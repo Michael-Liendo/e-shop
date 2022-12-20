@@ -5,7 +5,7 @@ import ProductCard from '../components/ProductCard';
 
 export default function Home({ products, categories }) {
   const [showCategories, setShowCategories] = useState('all');
-  const [sortBy, setSortBy] = useState('highest-price');
+  const [sortBy, setSortBy] = useState('recent');
 
   if (showCategories !== 'all') {
     products = products.filter(
