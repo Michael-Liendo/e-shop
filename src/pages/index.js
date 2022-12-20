@@ -2,8 +2,11 @@ import { useState } from 'react';
 import cn from 'classnames';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
+import { useShop } from '../context/ShopContext';
 
 export default function Home({ products, categories }) {
+  const { searchForm } = useShop();
+
   const [showCategories, setShowCategories] = useState('all');
   const [sortBy, setSortBy] = useState('recent');
 
@@ -25,6 +28,12 @@ export default function Home({ products, categories }) {
         else return 0;
       }
     });
+  }
+
+  if (searchForm !== '') {
+    products = products.filter((product) =>
+      product.title.toLowerCase().includes(searchForm)
+    );
   }
 
   return (
