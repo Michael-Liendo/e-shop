@@ -1,4 +1,5 @@
 import SearchForm from './SearchForm';
+import Cart from './Cart';
 
 export default function Navbar() {
   return (
@@ -7,6 +8,7 @@ export default function Navbar() {
       <div className="absolute left-[50%]">
         <h1>LOGO</h1>
       </div>
+      <Cart />
     </div>
   );
 }

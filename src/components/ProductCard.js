@@ -1,6 +1,9 @@
 import Image from 'next/image';
+import { useShop } from '../context/ShopContext';
 
 export default function ProductCard({ product }) {
+  const { setCart, cart } = useShop();
+
   return (
     <a key={product.id}>
       <div className="pb-3 transition duration-300 rounded-lg w-64  hover:shadow-xl">
@@ -18,9 +21,20 @@ export default function ProductCard({ product }) {
           <small className="block text-sm font-light text-gray-400">
             {product.category.name}
           </small>
-          <span className="text-xl text-gray-600 font-medium mt-10">
-            ${product.price}
-          </span>
+          <div className="flex justify-between ">
+            <span className="text-xl text-gray-600 font-medium mt-1">
+              ${product.price}
+            </span>
+            <button
+              onClick={() => {
+                setCart([...cart, product]);
+              }}
+              type="button"
+              className="py-2 px-3 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+            >
+              Add to bag
+            </button>
+          </div>
         </div>
       </div>
     </a>

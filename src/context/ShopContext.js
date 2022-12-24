@@ -6,9 +6,10 @@ export const useShop = () => useContext(ShopContext);
 
 export const ShopProvider = ({ children }) => {
   const [searchForm, setSearchForm] = useState('');
+  const [cart, setCart] = useState([]);
 
   return (
-    <ShopContext.Provider value={{ searchForm, setSearchForm }}>
+    <ShopContext.Provider value={{ searchForm, setSearchForm, cart, setCart }}>
       {children}
     </ShopContext.Provider>
   );
