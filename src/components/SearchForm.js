@@ -4,7 +4,7 @@ import { useShop } from '../context/ShopContext';
 export default function SearchForm() {
   const { setSearchForm } = useShop();
   return (
-    <div className="flex justify-start">
+    <div className="flex z-20 justify-start">
       <label
         className="rounded-l-sm border-y border-l p-1 border-slate-200"
         htmlFor="input"

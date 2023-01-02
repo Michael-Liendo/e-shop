@@ -40,7 +40,7 @@ export default function Home({ products, categories }) {
     <div>
       <Navbar />
       <div className="flex pt-20">
-        <aside className="overflow-y-scroll fixed h-[89vh] w-[25%]">
+        <aside className="hidden sm:block overflow-y-scroll fixed h-[89vh] w-[25%]">
           <h3 className="ml-10 text-xl font-semibold">Categories</h3>
           <ul>
             <li
@@ -96,7 +96,7 @@ export default function Home({ products, categories }) {
             </li>
           </ul>
         </aside>
-        <main className="mt-5 ml-[32%] grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <main className="mt-5 mx-auto sm:ml-[32%] grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {products
             ? products.map((product) => (
                 <ProductCard product={product} key={product.id} />
