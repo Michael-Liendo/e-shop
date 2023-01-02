@@ -9,7 +9,6 @@ export default function ProductCard({ product }) {
       <div className="pb-3 transition duration-300 rounded-lg w-64  hover:shadow-xl">
         <Image
           className="rounded-lg w-full h-56 object-cover"
-          src={product.images[0]}
           alt={product.title}
           width="1000"
           height="1000"
@@ -30,7 +29,7 @@ export default function ProductCard({ product }) {
                 setCart([...cart, product]);
               }}
               type="button"
-              className="py-2 px-3 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+              className="py-2 px-3 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
             >
               Add to bag
             </button>

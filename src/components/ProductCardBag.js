@@ -30,7 +30,7 @@ export default function ProductCardBag({ product, index }) {
           <span className="text-xs text-gray-500">{product.title}</span>
           <span className="text-sm">${product.price}</span>
         </div>
-        <i onClick={deleteItemBag} className="p-5 hover:cursor-pointer">
+        <i onClick={deleteItemBag} className="py-1.5 px-3 hover:cursor-pointer">
           <TrashIcon />
         </i>
       </div>

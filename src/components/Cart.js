@@ -24,7 +24,7 @@ export default function Cart() {
       </div>
 
       {bagOpen && (
-        <div className="fixed right-2 bg-slate-50 p-3 pt-5 shadow-lg w-80">
+        <div className="fixed right-2 bg-slate-50 p-3 shadow-lg w-80">
           <div className="overflow-y-scroll w-80 h-80">
             {cart.map((product, index) => {
               return (
