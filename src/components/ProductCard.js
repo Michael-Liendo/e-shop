@@ -9,6 +9,7 @@ export default function ProductCard({ product }) {
       <div className="pb-3 transition duration-300 rounded-lg w-64  hover:shadow-xl">
         <Image
           className="rounded-lg w-full h-56 object-cover"
+          src={product.images[0]}
           alt={product.title}
           width="1000"
           height="1000"
