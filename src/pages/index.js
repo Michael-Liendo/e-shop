@@ -51,22 +51,22 @@ export default function Home({ products, categories }) {
             >
               All
             </li>
-            {categories
-              ? categories.map((category) => (
-                  <li
-                    onClick={() =>
-                      setShowCategories(category.name.toLowerCase())
-                    }
-                    className={cn('ml-12 cursor-pointer text-lg', {
-                      'font-semibold':
-                        showCategories === category.name.toLowerCase(),
-                    })}
-                    key={category.id}
-                  >
-                    {category.name}
-                  </li>
-                ))
-              : null}
+            {categories.length ? (
+              categories.map((category) => (
+                <li
+                  onClick={() => setShowCategories(category.name.toLowerCase())}
+                  className={cn('ml-12 cursor-pointer text-lg', {
+                    'font-semibold':
+                      showCategories === category.name.toLowerCase(),
+                  })}
+                  key={category.id}
+                >
+                  {category.name}
+                </li>
+              ))
+            ) : (
+              <span>No hay más categorías</span>
+            )}
           </ul>
           <h3 className="ml-10 mt-6 text-xl font-semibold">Sort By</h3>
           <ul>
@@ -97,11 +97,13 @@ export default function Home({ products, categories }) {
           </ul>
         </aside>
         <main className="mt-5 mx-auto sm:ml-[32%] grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {products
-            ? products.map((product) => (
-                <ProductCard product={product} key={product.id} />
-              ))
-            : null}
+          {products.length ? (
+            products.map((product) => (
+              <ProductCard product={product} key={product.id} />
+            ))
+          ) : (
+            <h1>No hay products</h1>
+          )}
         </main>
       </div>
     </div>
@@ -109,16 +111,30 @@ export default function Home({ products, categories }) {
 }
 
 export async function getServerSideProps() {
-  const categoriesRequest = await fetch(
-    'https://api.escuelajs.co/api/v1/categories'
-  );
+  let categories = [];
+  let products = [];
 
-  const categories = await categoriesRequest.json();
-  const productsRequest = await fetch(
-    'https://api.escuelajs.co/api/v1/products'
-  );
-  const products = await productsRequest.json();
+  try {
+    const categoriesRequest = await fetch(
+      'https://api.escuelajs.co/api/v1/categories'
+    );
+    categories = await categoriesRequest.json();
+  } catch (error) {
+    console.error(error);
+    categories = [];
+  }
+
+  try {
+    const productsRequest = await fetch(
+      'https://api.escuelajs.co/api/v1/products'
+    );
+    products = await productsRequest.json();
+  } catch (error) {
+    console.error(error);
+    products = [];
+  }
+
   return {
-    props: { products, categories },
+    props: { products: products, categories: categories },
   };
 }
