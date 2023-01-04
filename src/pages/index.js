@@ -96,7 +96,7 @@ export default function Home({ products, categories }) {
             </li>
           </ul>
         </aside>
-        <main className="mt-5 mx-auto sm:ml-[32%] grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+        <main className="mt-5 mx-auto sm:ml-[32%] grid sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-10">
           {products.length ? (
             products.map((product) => (
               <ProductCard product={product} key={product.id} />
