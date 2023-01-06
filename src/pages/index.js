@@ -98,8 +98,8 @@ export default function Home({ products, categories }) {
         </aside>
         <main className="mt-5 mx-auto sm:ml-[32%] grid sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-10">
           {products.length ? (
-            products.map((product) => (
-              <ProductCard product={product} key={product.id} />
+            products.map((product, index) => (
+              <ProductCard product={product} key={index} />
             ))
           ) : (
             <h1>No hay products</h1>
