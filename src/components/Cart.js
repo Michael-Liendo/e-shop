@@ -19,7 +19,7 @@ export default function Cart() {
         className={cn(
           'transition duration-200 cursor-pointer hover:scale-105',
           {
-            'scale-110 duration-75': cartAnimated,
+            'scale-110': cartAnimated,
           }
         )}
         onClick={() => {

@@ -7,7 +7,7 @@ export default function ProductCard({ product }) {
   function CartAnimation() {
     setCartAnimated(true);
     console.log('CartAnimation');
-    setTimeout(() => setCartAnimated(false), 1000);
+    setTimeout(() => setCartAnimated(false), 200);
   }
 
   return (
