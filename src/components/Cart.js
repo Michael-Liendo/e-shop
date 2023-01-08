@@ -2,10 +2,11 @@ import { useState } from 'react';
 import BagIcon from './Icons/ShoppingBagIcon';
 import ProductCardBag from './ProductCardBag';
 import { useShop } from '../context/ShopContext';
+import cn from 'classnames';
 
 export default function Cart() {
   const [bagOpen, setBagOpen] = useState(false);
-  const { cart } = useShop();
+  const { cart, cartAnimated } = useShop();
 
   const cartTotal = cart.reduce(
     (accumulator, currentValue) => accumulator + currentValue.price,
@@ -15,7 +16,12 @@ export default function Cart() {
   return (
     <div>
       <div
-        className="transition duration-200 cursor-pointer hover:scale-105"
+        className={cn(
+          'transition duration-200 cursor-pointer hover:scale-105',
+          {
+            'scale-110 duration-75': cartAnimated,
+          }
+        )}
         onClick={() => {
           setBagOpen(!bagOpen);
         }}

@@ -2,7 +2,13 @@ import Image from 'next/image';
 import { useShop } from '../context/ShopContext';
 
 export default function ProductCard({ product }) {
-  const { setCart, cart } = useShop();
+  const { setCart, cart, setCartAnimated } = useShop();
+
+  function CartAnimation() {
+    setCartAnimated(true);
+    console.log('CartAnimation');
+    setTimeout(() => setCartAnimated(false), 1000);
+  }
 
   return (
     <a key={product.id}>
@@ -28,6 +34,7 @@ export default function ProductCard({ product }) {
             <button
               onClick={() => {
                 setCart([...cart, product]);
+                CartAnimation();
               }}
               type="button"
               className="py-2 px-3 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
