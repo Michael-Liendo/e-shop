@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { useShop } from '../context/ShopContext';
+import { useCart } from '../store/ShopStore';
 
 export default function ProductCard({ product }) {
-  const { setCart, cart, setCartAnimated } = useShop();
+  const { setCart, cart, setCartAnimated } = useCart();
 
   function CartAnimation() {
     setCartAnimated(true);

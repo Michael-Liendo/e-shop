@@ -1,17 +1,9 @@
 import Image from 'next/image';
-import { useShop } from '../context/ShopContext';
 import TrashIcon from './Icons/TrashIcon';
+import { useCart } from '../store/ShopStore';
 
 export default function ProductCardBag({ product, index }) {
-  const { setCart } = useShop();
-
-  function deleteItemBag() {
-    setCart((prev) => {
-      const newCart = [...prev];
-      newCart.splice(index, 1);
-      return newCart;
-    });
-  }
+  const { removeProduct } = useCart();
 
   return (
     <div className="flex my-2.5">
@@ -30,7 +22,10 @@ export default function ProductCardBag({ product, index }) {
           <span className="text-xs text-gray-500">{product.title}</span>
           <span className="text-sm">${product.price}</span>
         </div>
-        <i onClick={deleteItemBag} className="py-1.5 px-3 hover:cursor-pointer">
+        <i
+          onClick={() => removeProduct(index)}
+          className="py-1.5 px-3 hover:cursor-pointer"
+        >
           <TrashIcon />
         </i>
       </div>

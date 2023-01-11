@@ -2,10 +2,10 @@ import { useState } from 'react';
 import cn from 'classnames';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
-import { useShop } from '../context/ShopContext';
+import { useShopStore } from '../store/ShopStore';
 
 export default function Home({ products, categories }) {
-  const { searchForm } = useShop();
+  const { searchForm } = useShopStore();
 
   const [showCategories, setShowCategories] = useState('all');
   const [sortBy, setSortBy] = useState('recent');
