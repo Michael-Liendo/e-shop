@@ -1,8 +1,9 @@
 import Search from './Icons/SearchIcon';
-import { useShop } from '../context/ShopContext';
+import { useShopStore } from '../store/ShopStore';
 
 export default function SearchForm() {
-  const { setSearchForm } = useShop();
+  const { setSearchForm } = useShopStore();
+
   return (
     <div className="flex z-20 justify-start">
       <label

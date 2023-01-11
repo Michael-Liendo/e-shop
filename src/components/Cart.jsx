@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import BagIcon from './Icons/ShoppingBagIcon';
 import ProductCardBag from './ProductCardBag';
-import { useShop } from '../context/ShopContext';
+import { useCart } from '../store/ShopStore';
 import cn from 'classnames';
 
 export default function Cart() {
   const [bagOpen, setBagOpen] = useState(false);
-  const { cart, cartAnimated } = useShop();
+  const { cart, cartAnimated } = useCart();
 
   const cartTotal = cart.reduce(
     (accumulator, currentValue) => accumulator + currentValue.price,
