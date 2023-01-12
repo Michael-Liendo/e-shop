@@ -39,7 +39,7 @@ export const useCart = create((set, get) => ({
     });
   },
   decrementQuantity: (product) => {
-    const { cart } = get();
+    const { cart, removeProduct } = get();
 
     const index = cart.findIndex(({ id }) => id === product.id);
 
@@ -47,9 +47,7 @@ export const useCart = create((set, get) => ({
       set({ cart: [...cart, product] });
     } else {
       if (cart[index].quantity <= 1) {
-        set({
-          cart: cart.filter((value, index) => index !== index),
-        });
+        removeProduct(index);
       } else {
         cart[index].quantity -= 1;
         set({ cart: cart });
