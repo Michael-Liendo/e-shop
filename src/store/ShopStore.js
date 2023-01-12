@@ -28,14 +28,7 @@ export const useCart = create((set, get) => ({
     if (index < 0) {
       set({ cart: [...cart, product] });
     } else {
-      let newCart = cart.map((prevProduct) => {
-        if (prevProduct.id === product.id) {
-          return { ...product, quantity: product.quantity + 1 };
-        } else {
-          return { ...product };
-        }
-      });
-      set({ cart: newCart });
+      cart[index].quantity += 1;
     }
   },
   removeProduct: (productIndex) => {
