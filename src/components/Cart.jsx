@@ -9,7 +9,8 @@ export default function Cart() {
   const { cart, cartAnimated } = useCart();
 
   const cartTotal = cart.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.price,
+    (accumulator, currentValue) =>
+      accumulator + currentValue.price * currentValue.quantity,
     0
   );
 

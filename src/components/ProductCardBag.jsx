@@ -20,7 +20,7 @@ export default function ProductCardBag({ product, index }) {
       <div className="flex justify-between w-full ml-3">
         <div className="flex flex-col">
           <span className="text-xs text-gray-500">{product.title}</span>
-          <span className="text-sm">${product.price}</span>
+          <span className="text-sm">${product.price * product.quantity}</span>
           <div className="flex justify-between w-11 bg-gray-100 text-gray-800 text-xs font-medium rounded-full dark:bg-gray-700 dark:text-gray-300">
             <button
               onClick={() => decrementQuantity(product)}
