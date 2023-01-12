@@ -21,6 +21,7 @@ export default function ProductCardBag({ product, index }) {
         <div className="flex flex-col">
           <span className="text-xs text-gray-500">{product.title}</span>
           <span className="text-sm">${product.price}</span>
+          <span>{product.quantity}</span>
         </div>
         <i
           onClick={() => removeProduct(index)}
