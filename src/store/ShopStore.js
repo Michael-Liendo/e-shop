@@ -20,6 +20,24 @@ export const useCart = create((set, get) => ({
       cartAnimated: value,
     }));
   },
+  addProduct: (product) => {
+    const { cart } = get();
+
+    const index = cart.findIndex(({ id }) => id === product.id);
+
+    if (index < 0) {
+      set({ cart: [...cart, product] });
+    } else {
+      let newCart = cart.map((prevProduct) => {
+        if (prevProduct.id === product.id) {
+          return { ...product, quantity: product.quantity + 1 };
+        } else {
+          return { ...product };
+        }
+      });
+      set({ cart: newCart });
+    }
+  },
   removeProduct: (productIndex) => {
     const { cart } = get();
     set({

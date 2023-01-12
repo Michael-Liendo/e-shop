@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useCart } from '../store/ShopStore';
 
 export default function ProductCard({ product }) {
-  const { setCart, cart, setCartAnimated } = useCart();
+  const { addProduct, setCartAnimated } = useCart();
 
   function CartAnimation() {
     setCartAnimated(true);
@@ -32,7 +32,7 @@ export default function ProductCard({ product }) {
             </span>
             <button
               onClick={() => {
-                setCart([...cart, product]);
+                addProduct({ ...product, quantity: 1 });
                 CartAnimation();
               }}
               type="button"
