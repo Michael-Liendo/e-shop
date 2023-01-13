@@ -13,6 +13,10 @@ export default function Cart() {
       accumulator + currentValue.price * currentValue.quantity,
     0
   );
+  const cartTotalItems = cart.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.quantity,
+    0
+  );
 
   return (
     <div>
@@ -46,7 +50,7 @@ export default function Cart() {
           <div className="flex justify-between items-center">
             <div className="mt-3 flex flex-col items-center">
               <span className="text-xs">
-                {cart.length} item{cart.length === 1 ? '' : 's'}
+                {cartTotalItems} item{cart.length === 1 ? '' : 's'}
               </span>
               <span className="font-medium mt-1">
                 ${cartTotal < 1 ? '0.00' : cartTotal}
