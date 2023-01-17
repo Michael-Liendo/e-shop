@@ -57,13 +57,11 @@ export default function Cart() {
                 ${cartTotal < 1 ? '0.00' : cartTotal}
               </span>
             </div>
-            <Link href="/checkout">
-              <button
-                type="button"
-                className="text-white bg-[#2557D6] hover:bg-[#2557D6]/90 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
-              >
-                Check out
-              </button>
+            <Link
+              href="/checkout"
+              className="text-white bg-[#2557D6] hover:bg-[#2557D6]/90 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+            >
+              Check out
             </Link>
           </div>
         </div>
