@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useCart } from '../store/ShopStore';
 
 export default function ProductCard({ product }) {
@@ -10,7 +11,7 @@ export default function ProductCard({ product }) {
   }
 
   return (
-    <a key={product.id}>
+    <Link href={`/product/${product.id}`} key={product.id}>
       <div className="pb-3 transition duration-300 rounded-lg w-64  hover:shadow-xl">
         <Image
           className="rounded-lg w-full h-56 object-cover"
@@ -43,6 +44,6 @@ export default function ProductCard({ product }) {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
