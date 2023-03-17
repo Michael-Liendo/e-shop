@@ -1,41 +1,41 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import cn from 'classnames';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
-import { useShopStore } from '../store/ShopStore';
 import Head from 'next/head';
+import { useQuery } from 'urql';
 
-export default function Home({ products, categories }) {
-  const { searchForm } = useShopStore();
+const TodosQuery = `
+query {
+  products {
+    id
+    title
+    price
+    description
+    images
+    category {
+      id
+      name
+      image
+    }
+  }
+}
+`;
+
+export default function Home({ categories }) {
+  const [result] = useQuery({
+    query: TodosQuery,
+  });
+
+  let { data } = result;
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    setProducts(data?.products);
+  }, [data]);
 
   const [showCategories, setShowCategories] = useState('all');
   const [sortBy, setSortBy] = useState('recent');
-
-  if (showCategories !== 'all') {
-    products = products.filter(
-      (product) => product.category.name.toLowerCase() === showCategories
-    );
-  }
-  if (sortBy !== 'recent') {
-    products = products.sort((a, b) => {
-      if (sortBy === 'lowest-price') {
-        if (a.price < b.price) return -1;
-        if (a.price > b.price) return 1;
-        else return 0;
-      }
-      if (sortBy === 'highest-price') {
-        if (a.price > b.price) return -1;
-        if (a.price < b.price) return 1;
-        else return 0;
-      }
-    });
-  }
-
-  if (searchForm !== '') {
-    products = products.filter((product) =>
-      product.title.toLowerCase().includes(searchForm)
-    );
-  }
 
   return (
     <>
@@ -56,7 +56,7 @@ export default function Home({ products, categories }) {
               >
                 All
               </li>
-              {categories.length ? (
+              {categories?.length ? (
                 categories.map((category) => (
                   <li
                     onClick={() =>
@@ -104,7 +104,7 @@ export default function Home({ products, categories }) {
             </ul>
           </aside>
           <main className="mt-5 mx-auto sm:ml-[32%] grid sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-10">
-            {products.length ? (
+            {products?.length ? (
               products.map((product, index) => (
                 <ProductCard product={product} key={index} />
               ))
@@ -117,12 +117,9 @@ export default function Home({ products, categories }) {
     </>
   );
 }
-
+/*
 export async function getServerSideProps() {
-  let categories = [];
-  let products = [];
-
-  try {
+   try {
     const categoriesRequest = await fetch(
       'https://api.escuelajs.co/api/v1/categories'
     );
@@ -140,9 +137,5 @@ export async function getServerSideProps() {
   } catch (error) {
     console.error(error);
     products = [];
-  }
-
-  return {
-    props: { products: products, categories: categories },
-  };
-}
+  } 
+}*/
